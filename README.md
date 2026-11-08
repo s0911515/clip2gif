@@ -47,6 +47,7 @@ GitHub と連携していて、main に push すると本番に、PR ではプ�
 1. Workers & Pages →「作成」→「Pages」→「Git に接続」→ `s0911515/clip2gif` を選ぶ。
 2. プロジェクト名 `clip2gif`、本番ブランチ `main`、フレームワーク「なし」。
 3. ビルドコマンド `npm run build`、出力ディレクトリ `dist`。Node のバージョンは `.node-version`（22）が使われる。
+4. GitHub の Installed GitHub Apps の「Cloudflare Workers and Pages」で、Repository access に clip2gif を入れる（clip2gif だけに許可している）。これがないと push が Cloudflare に届かず、自動デプロイされない。
 
 ## ライセンス
 
