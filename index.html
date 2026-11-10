@@ -4,28 +4,61 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex, nofollow" />
-    <meta name="description" content="動画の一場面を切り取って、軽い GIF・アニメーション WebP にするツール。動画は端末の外に送られません。" />
-    <title>clip2gif</title>
+    <meta name="description" content="スマホで撮った動画から好きな場面を切り取って、軽い GIF・アニメーション WebP にします。登録不要・無料で、動画はどこにも送信されません。" />
+    <meta name="theme-color" content="#e8590c" />
+    <title>clip2gif｜動画の一場面を、軽い GIF・WebP に</title>
     <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <!-- URL を LINE などに貼ったときのカード -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://clip2gif-8pr.pages.dev/" />
+    <meta property="og:title" content="clip2gif｜動画の一場面を、軽い GIF・WebP に" />
+    <meta property="og:description" content="動画から好きな場面を切り取って、軽い動く画像に。登録不要・無料で、動画はどこにも送信されません。" />
+    <meta property="og:image" content="https://clip2gif-8pr.pages.dev/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
   </head>
   <body>
-    <header class="top">
-      <h1>clip2gif</h1>
-      <p class="lead">動画の一場面を切り取って、軽い GIF・アニメーション WebP にします。</p>
-      <p class="privacy">動画はこの端末の中だけで処理され、どこにも送信されません。</p>
+    <header class="hero">
+      <p class="brand"><img src="/icon.svg" alt="" width="28" height="28" />clip2gif</p>
+      <h1>動画の一場面を、<br />軽い GIF・WebP に</h1>
+      <p class="lead">スマホで撮った動画から好きな場面を切り取って、日記やブログ、チャットに貼りやすい動く画像にします。</p>
+      <ul class="badges" aria-label="特長">
+        <li>登録不要</li>
+        <li>無料</li>
+        <li>動画は送信されません</li>
+      </ul>
+      <ol class="steps">
+        <li>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z" /><path d="m16 10 4-2.5v9L16 14" /></svg>
+          <span>選ぶ</span>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="6" r="2.5" /><circle cx="6" cy="18" r="2.5" /><path d="M8 7.5 20 17M8 16.5 20 7" /></svg>
+          <span>切り取る</span>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5" /><path d="M5 19h14" /></svg>
+          <span>保存</span>
+        </li>
+      </ol>
     </header>
 
     <main>
       <section class="card" id="pick">
         <label class="drop" id="drop">
           <input type="file" id="file" accept="video/*" />
-          <span class="drop-main">動画を選ぶ</span>
-          <span class="drop-sub">またはここにドラッグ＆ドロップ</span>
+          <svg class="drop-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V5m0 0L7.5 9.5M12 5l4.5 4.5" /><path d="M5 15v2a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-2" /></svg>
+          <span class="drop-text">
+            <span class="drop-main" id="drop-main">動画を選ぶ</span>
+            <span class="drop-sub" id="drop-sub">またはここにドラッグ＆ドロップ（MP4・MOV など）</span>
+          </span>
         </label>
       </section>
 
       <section class="card" id="edit" hidden>
-        <h2>1. 場面を切り取る</h2>
+        <h2>場面を切り取る</h2>
         <video id="video" controls playsinline muted preload="auto"></video>
         <p class="meta" id="video-meta"></p>
 
@@ -47,7 +80,7 @@
           <button type="button" id="play-range" class="secondary">範囲を再生</button>
         </div>
 
-        <h2>2. 書き出しの設定</h2>
+        <h2>書き出しの設定</h2>
         <div class="settings">
           <fieldset class="seg">
             <legend>形式</legend>
@@ -111,7 +144,7 @@
       </section>
 
       <section class="card" id="result" hidden>
-        <h2>3. できあがり</h2>
+        <h2>できあがり</h2>
         <img id="out" alt="できあがった動く画像" />
         <p class="meta" id="out-meta"></p>
         <a id="download" class="button primary" download>保存する</a>
@@ -119,8 +152,8 @@
     </main>
 
     <footer class="foot">
-      <p>最近の Chrome・Edge・Safari・Firefox で使えます。ブラウザで再生できない形式の動画は扱えません。</p>
-      <p><a href="https://github.com/s0911515/clip2gif">ソースコード（MIT ライセンス）</a></p>
+      <p>動画はこの端末の中だけで処理され、どこにも送信されません。最近の Chrome・Edge・Safari・Firefox で使えます。ブラウザで再生できない形式の動画は扱えません。</p>
+      <p><a href="/licenses.txt">使っているライブラリ</a></p>
     </footer>
 
     <script type="module" src="/src/main.ts"></script>
