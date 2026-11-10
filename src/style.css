@@ -38,11 +38,43 @@ body {
 }
 [hidden] { display: none !important; }
 
-.top, main, .foot { max-width: 720px; margin: 0 auto; padding: 0 16px; }
-.top { padding-top: 32px; padding-bottom: 8px; }
-.top h1 { margin: 0; font-size: 28px; letter-spacing: 0.02em; color: var(--accent); }
-.lead { margin: 4px 0 0; }
-.privacy { margin: 4px 0 0; font-size: 14px; color: var(--muted); }
+.hero, main, .foot { max-width: 720px; margin: 0 auto; padding: 0 16px; }
+
+/* ---------- 最初の画面 ---------- */
+.hero { padding-top: 28px; padding-bottom: 4px; }
+.brand {
+  display: flex; align-items: center; gap: 8px; margin: 0;
+  font-weight: 800; font-size: 18px; letter-spacing: 0.02em; color: var(--accent);
+}
+.brand img { border-radius: 7px; }
+.hero h1 {
+  margin: 18px 0 0; font-size: clamp(28px, 7vw, 40px); line-height: 1.3;
+  letter-spacing: 0.01em; font-weight: 800;
+}
+.lead { margin: 12px 0 0; color: var(--muted); max-width: 34em; }
+.badges { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; padding: 0; margin: 16px 0 0; }
+.badges li {
+  font-size: 13px; font-weight: 600; padding: 4px 10px; border-radius: 999px;
+  background: var(--accent-soft); color: var(--accent);
+}
+.steps {
+  list-style: none; padding: 0; margin: 22px 0 0;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; counter-reset: step;
+}
+.steps li {
+  counter-increment: step; position: relative;
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  padding: 14px 8px 12px; border: 1px solid var(--line); border-radius: 12px;
+  background: var(--card); font-size: 14px; font-weight: 600; text-align: center;
+}
+.steps li::before {
+  content: counter(step); position: absolute; top: 8px; left: 10px;
+  font-size: 12px; font-weight: 700; color: var(--muted);
+}
+.steps svg, .drop-icon {
+  width: 28px; height: 28px; fill: none; stroke: var(--accent);
+  stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
+}
 
 .card {
   background: var(--card);
@@ -56,9 +88,21 @@ h2:not(:first-child) { margin-top: 28px; }
 
 .drop {
   display: flex; flex-direction: column; align-items: center; justify-content: center;
-  gap: 4px; min-height: 140px; padding: 20px;
+  gap: 8px; min-height: 160px; padding: 20px;
   border: 2px dashed var(--line); border-radius: 12px; cursor: pointer; text-align: center;
+  transition: background-color 0.15s, border-color 0.15s;
 }
+.drop-icon { width: 40px; height: 40px; }
+.drop-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+/* 動画を選んだ後は、1 行の小さなボタンにたたむ */
+#pick.compact { padding: 10px; }
+#pick.compact .drop {
+  flex-direction: row; justify-content: flex-start; min-height: 0; padding: 10px 14px;
+  gap: 12px; text-align: left; border-style: solid; border-width: 1px;
+}
+#pick.compact .drop-icon { width: 24px; height: 24px; flex: none; }
+#pick.compact .drop-main { font-size: 15px; }
+#pick.compact .drop-sub { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .drop:hover, .drop.over, .drop:focus-within { border-color: var(--accent); background: var(--accent-soft); }
 .drop input { position: absolute; opacity: 0; width: 1px; height: 1px; }
 .drop-main { font-weight: 700; font-size: 18px; color: var(--accent); }
@@ -123,5 +167,5 @@ button:disabled { opacity: 0.5; cursor: not-allowed; }
 progress { width: 100%; height: 10px; margin-top: 14px; accent-color: var(--accent); }
 .error { color: var(--error); margin: 12px 0 0; }
 
-.foot { font-size: 13px; color: var(--muted); padding-bottom: 40px; }
+.foot { font-size: 13px; color: var(--muted); padding-top: 8px; padding-bottom: 40px; }
 .foot a { color: inherit; }

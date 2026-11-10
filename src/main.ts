@@ -34,6 +34,7 @@ const outMeta = $<HTMLParagraphElement>('out-meta');
 const download = $<HTMLAnchorElement>('download');
 
 let fileName = '';
+let fileSize = 0;
 let busy = false;
 let cancelled = false;
 let outUrl = '';
@@ -298,7 +299,7 @@ function showResult(blob: Blob, s: EncodeSettings) {
   const ext = s.format === 'gif' ? 'gif' : 'webp';
   download.href = outUrl;
   download.download = `${outName()}.${ext}`;
-  outMeta.textContent = `${s.format === 'gif' ? 'GIF' : 'WebP'}・${s.width}×${s.height}・${fmtBytes(blob.size)}`;
+  outMeta.textContent = `${s.format === 'gif' ? 'GIF' : 'WebP'}・${s.width}×${s.height}・${fmtBytes(blob.size)}（元の動画は ${fmtBytes(fileSize)}）`;
   result.hidden = false;
   result.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
@@ -319,6 +320,11 @@ async function open(file: File) {
     return;
   }
   fileName = file.name;
+  fileSize = file.size;
+  // 選んだ後は、選ぶ場所を小さくたたむ
+  $('pick').classList.add('compact');
+  $('drop-main').textContent = '別の動画を選ぶ';
+  $('drop-sub').textContent = file.name;
   edit.hidden = false;
   result.hidden = true;
   try {

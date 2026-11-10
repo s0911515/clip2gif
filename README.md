@@ -26,6 +26,8 @@
 | `src/webp.ts` | アニメーション WebP の組み立て。1 コマずつ libwebp（[@jsquash/webp](https://github.com/jamsinclair/jSquash) の wasm）で圧縮し、RIFF の ANIM/ANMF に詰め直す |
 | `src/main.ts` | 画面の操作、大きさの見積もり（見本の 3 コマを実際に圧縮して掛け算する） |
 | `public/_headers` | Cloudflare Pages の応答ヘッダー（noindex、CSP など） |
+| `scripts/licenses.mjs` | 同梱しているライブラリのライセンス文を `public/licenses.txt` にまとめる（`npm run build` / `dev` のたびに動く。画面の「使っているライブラリ」から開く） |
+| `scripts/og.html`・`scripts/make-images.cjs` | URL を貼ったときのカード画像 `public/og.png` と、iPhone のホーム画面用 `public/apple-touch-icon.png` の元。見た目を変えたら `node scripts/make-images.cjs`（Playwright が必要）で書き出し直す |
 
 Safari は canvas から WebP を書き出せないので、どのブラウザでも wasm の libwebp を使う。
 
